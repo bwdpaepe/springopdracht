@@ -10,7 +10,7 @@
 
 	<div id="login-box">
 
-		<h3>Login with Username and Password</h3>
+		<h3>Login with Email and Password</h3>
 
 		<div th:if="${error}" class="error" th:text="${error}"></div>
 
@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type='password' name='hashedPassword' /></td>
+					<td><input type='password' name='password' /></td>
 				</tr>
 				<tr>
 					<td colspan='2'><button name="submit" type="submit">Login</button></td>

@@ -1,8 +1,7 @@
 package com.springBoot_opdracht;
 
-import javax.sql.DataSource;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,12 +15,12 @@ import org.springframework.security.web.access.expression.WebExpressionAuthoriza
 @EnableWebSecurity
 public class SecurityConfig{
 
-    @Autowired
-    DataSource dataSource;
-
-    @Autowired
+	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(new BCryptPasswordEncoder());
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        auth.inMemoryAuthentication()
+          .withUser("bartUser").password(encoder.encode("paswoord")).roles("USER").and()
+          .withUser("bartAdmin").password(encoder.encode("paswoord")).roles("USER","ADMIN");
     }
     
     @Bean
@@ -31,11 +30,11 @@ public class SecurityConfig{
                 		requests.requestMatchers("/login**").permitAll()
             	        		.requestMatchers("/css/**").permitAll()
             	        		.requestMatchers("/*")
-            	        		.access(new WebExpressionAuthorizationManager("hasRole('USER')")))
+            	        		.access(new WebExpressionAuthorizationManager("hasRole('USER') or hasRole('ADMIN')")))
                 .formLogin(form -> 
                 		form.defaultSuccessUrl("/welcome", true)
                          	.loginPage("/login")
-                         	.usernameParameter("email").passwordParameter("hashedPassword"))
+                         	.usernameParameter("email").passwordParameter("password"))
                 ;
         
         return http.build();
