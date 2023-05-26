@@ -1,3 +1,23 @@
+/* general layout */
+html {
+    background-image: url("../img/jonathan-sanchez-YK-sIng6Edg-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+}
+
+body {
+	display: grid;
+  	justify-content: center;
+}
+
+
+
+
+/* errors */
 .error {
     padding: 15px;
     margin-bottom: 20px;
@@ -18,6 +38,7 @@
     border-color: #bce8f1;
 }
 
+/* login page */
 #login-box {
     width: 300px;
     padding: 20px;

@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1 th:text="|Message : ${message}|"></h1>
-	<h2 th:text="|Hello ${username}|"></h2>
+	<h2 th:text="|Hello ${username} with role ${role}|"></h2>
 
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Logout" /> 
