@@ -1,7 +1,10 @@
 package com.springBoot_opdracht;
 
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +19,19 @@ import org.springframework.security.web.access.expression.WebExpressionAuthoriza
 public class SecurityConfig{
 
 	@Autowired
+    DataSource dataSource;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        auth.inMemoryAuthentication()
-          .withUser("bartUser").password(encoder.encode("paswoord")).roles("USER").and()
-          .withUser("bartAdmin").password(encoder.encode("paswoord")).roles("USER","ADMIN");
+        auth.jdbcAuthentication()
+            .dataSource(dataSource)
+            .usersByUsernameQuery("select email,password,enabled "
+                    + "from user "
+                    + "where email = ?")
+            .passwordEncoder(new BCryptPasswordEncoder());
     }
     
     @Bean
