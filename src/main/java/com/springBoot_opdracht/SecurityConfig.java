@@ -29,6 +29,7 @@ public class SecurityConfig{
                 .authorizeHttpRequests(requests -> 
                 		requests.requestMatchers("/login**").permitAll()
             	        		.requestMatchers("/css/**").permitAll()
+            	        		.requestMatchers("/img/**").permitAll()
             	        		.requestMatchers("/*")
             	        		.access(new WebExpressionAuthorizationManager("hasRole('USER') or hasRole('ADMIN')")))
                 .formLogin(form -> 
