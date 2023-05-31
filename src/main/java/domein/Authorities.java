@@ -30,7 +30,13 @@ public class Authorities implements Serializable {
     public Authorities(String email, User user) {
     	this.user = user;
     	this.email = email;
-    	this.authority = "USER";
+    	this.authority = "ROLE_USER";
+    }
+    
+    public Authorities(User user, String email, String authority) {
+    	this.user = user;
+    	this.email = email;
+    	this.authority = authority;
     }
 
 }

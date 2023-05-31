@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" id="login-page">
 <head>
 <meta charset="UTF-8">
-<title>Login Page</title>
+<title th:text="#{login_title}">Backup title</title>
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body onload='document.loginForm.username.focus();'>
-	<h1>Spring Security Custom Login Form (Annotation)</h1>
+	<h1 th:text="#{login_welkom}">Backup h1</h1>
 
 	<div id="login-box">
 
-		<h3>Login with Email and Password</h3>
+		<h3 th:text="#{login_box}">Backup h3</h3>
 
 		<div th:if="${error}" class="error" th:text="${error}"></div>
 
@@ -19,15 +19,15 @@
 		<form action="#" th:action="@{/login}" method="post">
 			<table>
 				<tr>
-					<td>User:</td>
+					<td th:text="#{login_user}">Backup User:</td>
 					<td><input type='text' name='email' value=''></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
+					<td th:text="#{login_password}">Backup Password:</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
 				<tr>
-					<td colspan='2'><button name="submit" type="submit">Login</button></td>
+					<td colspan='2'><button name="submit" type="submit" th:text="#{login_button}">Backup Login</button></td>
 				</tr>
 			</table>
 

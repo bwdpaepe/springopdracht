@@ -1,7 +1,6 @@
 package com.springBoot_opdracht;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -22,9 +21,6 @@ public class SecurityConfig{
     DataSource dataSource;
 	
 	@Autowired
-	PasswordEncoder passwordEncoder;
-
-    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
             .dataSource(dataSource)
@@ -45,7 +41,7 @@ public class SecurityConfig{
             	        		.requestMatchers("/css/**").permitAll()
             	        		.requestMatchers("/img/**").permitAll()
             	        		.requestMatchers("/*")
-            	        		.access(new WebExpressionAuthorizationManager("hasRole('USER')")))
+            	        		.access(new WebExpressionAuthorizationManager("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")))
                 .formLogin(form -> 
                 		form.defaultSuccessUrl("/welcome", true)
                          	.loginPage("/login")

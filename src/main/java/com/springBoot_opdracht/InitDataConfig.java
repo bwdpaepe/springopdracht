@@ -31,7 +31,7 @@ public class InitDataConfig implements CommandLineRunner {
 		uRepository.save(new User("jurgen@example.com", passwordEncoder.encode("pass")));
 		aRepository.save(new Authorities("jurgen@example.com", uRepository.findByEmail("jurgen@example.com")));
 		uRepository.save(new User("ann@example.com", passwordEncoder.encode("pass")));
-		aRepository.save(new Authorities("ann@example.com", uRepository.findByEmail("ann@example.com")));
+		aRepository.save(new Authorities(uRepository.findByEmail("ann@example.com"), "ann@example.com", "ROLE_ADMIN"));
 		
 	}
 
