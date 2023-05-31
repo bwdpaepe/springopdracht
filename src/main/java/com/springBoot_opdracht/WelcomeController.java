@@ -1,7 +1,10 @@
 package com.springBoot_opdracht;
 
 import java.security.Principal;
+import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WelcomeController {
 
 	@GetMapping(value = "/welcome")
-    public String printWelcome(Model model, Principal principal) {
+    public String printWelcome(Model model, Authentication authentication) {
+		
+		List<String> listRoles = authentication.getAuthorities()
+				                               .stream()
+				                               .map(GrantedAuthority::getAuthority).toList();
 
-        model.addAttribute("username", principal.getName());
-        model.addAttribute("message", "Spring Security Custom Form example");
+        model.addAttribute("userName", authentication.getName());
+        model.addAttribute("userListRoles", listRoles);
         return "hello";
     }
 

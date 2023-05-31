@@ -6,13 +6,8 @@
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-	<h1 th:text="|Message : ${message}|"></h1>
-	<h2 th:text="|Hello ${username} with role ${role}|"></h2>
-
-	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" /> 
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	</form>
+	<div th:replace="header.html :: header(userName=${userName}, userListRoles=${userListRoles})"></div>
+	<main><h1 th:text="${userName}">Backup title</h1></main>
 
 </body>
 </html>

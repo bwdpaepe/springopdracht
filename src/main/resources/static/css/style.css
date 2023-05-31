@@ -5,6 +5,31 @@ html {
 	font-family: roboto, Arial, serif;
 }
 
+/* header */
+header {
+	border-bottom: black solid 1px;	
+}
+
+header > * {
+	margin-bottom: 20px;
+}
+
+.header-flex {
+	display: flex;
+	flex-direction: row;
+}
+
+/* navigation */
+.nav-flex {
+	display: flex;
+	flex-direction: row;
+}
+
+nav > ul > li {
+	list-style: none;
+	margin-right: 20px;
+}
+
 body {
 	display: grid;
   	justify-content: center;
