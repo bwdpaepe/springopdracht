@@ -7,12 +7,12 @@ import lombok.Getter;
 @Getter
 public class BookRow {
 	
-	private Long id;
-	private String name;
-	private String image;
-	private String author1;
-	private String author2;
-	private String author3;
+	private final Long id;
+	private final String name;
+	private final String image;
+	private final String author1;
+	private final String author2;
+	private final String author3;
 	
 	
 

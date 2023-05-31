@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import service.BookService;
 import service.BookServiceImpl;
+import validator.LocationValidation;
 
 @SpringBootApplication
 @EnableJpaRepositories("repository")
@@ -35,6 +36,11 @@ public class SpringBootOpdrachtApplication implements WebMvcConfigurer {
 	@Bean
 	BookService bookService() {
 		return new BookServiceImpl();
+	}
+	
+	@Bean
+	LocationValidation locationValidation() {
+		return new LocationValidation();
 	}
 
 }
