@@ -10,6 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import service.BookService;
+import service.BookServiceImpl;
+
 @SpringBootApplication
 @EnableJpaRepositories("repository")
 @EntityScan("domein")
@@ -27,6 +30,11 @@ public class SpringBootOpdrachtApplication implements WebMvcConfigurer {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	BookService bookService() {
+		return new BookServiceImpl();
 	}
 
 }

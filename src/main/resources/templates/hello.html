@@ -7,7 +7,35 @@
 </head>
 <body>
 	<div th:replace="header.html :: header(userName=${userName}, userListRoles=${userListRoles})"></div>
-	<main><h1 th:text="${userName}">Backup title</h1></main>
+	<main>
+		<h1 th:text="#{catalogus}">Backup h1</h1>
+		<table>
+		<tr>
+		    <th>Index</th>
+			<th>Count</th>
+			<th>Naam</th>
+			<th>Auteur 1</th>
+			<th>Auteur 2</th>
+			<th>Auteur 3</th>
+			<th>Afbeelding</th>
+		</tr>
+
+        <th:block th:each="book,iter: ${bookList}">
+			<tr>
+			    <td th:text="${iter.index}"></td>
+			    <td th:text="${iter.count}"></td>
+				<td>
+				<a th:href="|/book/${book.id}|" th:text="${book.name}"></a>
+				</td>
+				<td th:text="${book.author1}"></td>
+				<td th:text="${book.author2}"></td>
+				<td th:text="${book.author3}"></td>
+				<td th:text="${book.image}"></td>
+			</tr>
+		</th:block>
+
+	</table>
+	</main>
 
 </body>
 </html>

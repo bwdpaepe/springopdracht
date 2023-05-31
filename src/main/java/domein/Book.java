@@ -1,8 +1,8 @@
 package domein;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +32,7 @@ public class Book implements Serializable {
 	private String image;
 	
 	@ManyToMany
-	private Set<Author> authorSet = new HashSet<>();;
+	private List<Author> authorList = new ArrayList<>();
 	
 	public Book (String name, String image) {
 		this.name = name;
@@ -41,7 +41,7 @@ public class Book implements Serializable {
 	}
 	
 	public void addAuthor(Author author) {
-		this.authorSet.add(author);
+		this.authorList.add(author);
 	}
 	
 
