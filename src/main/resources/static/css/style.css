@@ -79,3 +79,43 @@ body {
     border-radius: 2px;
     border: 1px solid #000;
 }
+
+/* catalogus page */
+
+.catalogus-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+/* De foto's moeten de breedte van hun container innemen. */
+.catalogus-item {
+  width: 100%;
+}
+
+/* We maken van elke 'card' een flex-container, met flex-direction: column.*/
+.card {
+  display: flex;
+  flex-direction: column;
+  /*width: 245px;*/
+  margin: 5px;
+}
+/* En we stellen in dat het eerste element (.content) van de 'card', mag groeien. */
+.card .content {
+  /* flex: 1 1 auto; */
+  flex-grow: 1;
+}
+
+.card footer {
+  background-color: rgba(96, 139, 168, 0.2);
+  padding: 10px;
+}
+
+.card .content {
+  padding: 10px;
+}
+
+.card {
+  border: 2px solid rgb(96, 139, 168);
+  border-radius: 5px;
+}
