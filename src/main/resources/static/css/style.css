@@ -82,6 +82,20 @@ body {
 
 /* catalogus page */
 
+.catalogus-head {
+	display: flex;
+}
+
+.catalogus-title {
+	flex: 0 0 auto;
+	margin-right: auto;
+}
+
+.catalogus-links {
+	flex: 0 0 auto;
+	margin-left: 20px;
+}
+
 .catalogus-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

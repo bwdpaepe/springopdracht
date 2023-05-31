@@ -8,7 +8,7 @@
 <body>
 	<div th:replace="header.html :: header(userName=${userName}, userListRoles=${userListRoles})"></div>
 	<main>
-		<h1 th:text="#{catalogus}">Backup h1</h1>
+		<div class="catalogus-head"><h1 th:text="#{catalogus}" class="catalogus-title">Backup h1</h1><!-- <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a href="#" th:text="#{voeg_toe}" class="catalogus-links"></a></th:block>--><a href="#" th:text="#{meest_populair}" class="catalogus-links"></a></div>
 		<div class="catalogus-wrapper">
 		<th:block th:each="book,iter: ${bookList}">
 			<div class="card catalogus-item">
