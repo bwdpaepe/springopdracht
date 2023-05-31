@@ -1,24 +1,18 @@
 package domein;
 
 import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@EqualsAndHashCode(exclude = "id")
-@ToString(exclude = {"id", "password"})
-public class User implements Serializable {
+public class Authorities implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
     
@@ -26,18 +20,17 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@OneToOne
+    private User user;
+	
 	private String email;
-
-    private String password;
     
-    private String role;
+    private String authority;
     
-    private int enabled;
+    public Authorities(String email, User user) {
+    	this.user = user;
+    	this.email = email;
+    	this.authority = "USER";
+    }
 
-	public User(String email, String password) {
-		this.email = email;
-		this.password = password;
-		this.role = "USER";
-		this.enabled = 1;
-	}
 }

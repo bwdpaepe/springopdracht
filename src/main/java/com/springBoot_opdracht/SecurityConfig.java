@@ -31,6 +31,9 @@ public class SecurityConfig{
             .usersByUsernameQuery("select email,password,enabled "
                     + "from user "
                     + "where email = ?")
+            .authoritiesByUsernameQuery("select email,authority "
+                    + "from authorities "
+                    + "where email = ?")
             .passwordEncoder(new BCryptPasswordEncoder());
     }
     
@@ -42,7 +45,7 @@ public class SecurityConfig{
             	        		.requestMatchers("/css/**").permitAll()
             	        		.requestMatchers("/img/**").permitAll()
             	        		.requestMatchers("/*")
-            	        		.access(new WebExpressionAuthorizationManager("hasRole('USER') or hasRole('ADMIN')")))
+            	        		.access(new WebExpressionAuthorizationManager("hasRole('USER')")))
                 .formLogin(form -> 
                 		form.defaultSuccessUrl("/welcome", true)
                          	.loginPage("/login")
