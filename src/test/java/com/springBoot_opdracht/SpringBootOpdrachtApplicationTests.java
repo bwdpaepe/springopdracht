@@ -32,17 +32,17 @@ class SpringBootOpdrachtApplicationTests {
 		.andExpect(view().name("login"));
 	}
 	
-	@WithMockUser(username = "tanja@example.com", roles = { "USER" })
+	@WithMockUser(username = "tania@example.com", roles = { "USER" })
 	@Test
 	public void testAccessWithUserRole() throws Exception {
 		mockMvc.perform(get("/welcome"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("hello"))
 		.andExpect(model().attributeExists("username"))
-		.andExpect(model().attribute("username", "tanja@example.com"));
+		.andExpect(model().attribute("username", "tania@example.com"));
 	}
 
-	@WithMockUser(username = "tanja@example.com", roles = { "NONE" })
+	@WithMockUser(username = "tania@example.com", roles = { "NONE" })
 	@Test
 	public void testNoAccessWithWrongUserRole() throws Exception {
 		mockMvc.perform(get("/welcome"))
@@ -52,20 +52,20 @@ class SpringBootOpdrachtApplicationTests {
 	@Test
 	void testWrongPassword() throws Exception {
 		mockMvc.perform(formLogin("/login")
-				.user("email", "tanja@example.com")
+				.user("email", "tania@example.com")
 				.password("password", "wrongpassword"))
 				.andExpect(status().isFound()) 
 				.andExpect(redirectedUrl("/login?error"));
 	}
 
-	/*@Test
+	@Test
 	void testCorrectPassword() throws Exception {
 		mockMvc.perform(formLogin("/login")
-				.user("email", "tanja@example.com")
+				.user("email", "tania@example.com")
 				.password("password", "pass"))
 				.andExpect(status().isFound()) 
 				.andExpect(redirectedUrl("/welcome"));
-	}*/
+	}
 
 	
 
