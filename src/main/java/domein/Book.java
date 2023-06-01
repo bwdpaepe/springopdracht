@@ -33,7 +33,7 @@ import validator.ValidISBN;
 	query = "SELECT b.locationList FROM Book b WHERE :Id = b.id")
 })
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Book implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -58,6 +58,8 @@ public class Book implements Serializable {
 	@DecimalMax(value = "99.99", message = "book_price_max")
 	private double price;
 	
+	private int numVotes;
+	
 	@ManyToMany
 	private List<Author> authorList = new ArrayList<>();
 	
@@ -68,7 +70,7 @@ public class Book implements Serializable {
 		this.name = name;
 		this.image = image;
 		this.price = new SecureRandom().nextDouble(0.00, 100.00);
-		//this.authorSet = authorSet;
+		this.numVotes = new SecureRandom().nextInt(1,100);
 	}
 	
 	public Book (String name, String image, long isbn) {
@@ -76,7 +78,7 @@ public class Book implements Serializable {
 		this.image = image;
 		this.isbn = isbn;
 		this.price = new SecureRandom().nextDouble(20.00, 40.00);
-		//this.authorSet = authorSet;
+		this.numVotes = new SecureRandom().nextInt(1,100);
 	}
 	
 	public void addAuthor(Author author) {

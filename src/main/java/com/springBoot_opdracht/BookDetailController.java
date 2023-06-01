@@ -38,6 +38,8 @@ public class BookDetailController {
         model.addAttribute("userName", authentication.getName());
         model.addAttribute("userListRoles", listRoles);
         
+        // main
+        
         Book book = bookService.findById(bookId);
         if(book == null) {
         	return "redirect:/welcome";
@@ -52,6 +54,22 @@ public class BookDetailController {
         
 
 		return "book_detail";
+	}
+	
+	@GetMapping(value = "/add")
+    public String bookForm(Model model, Authentication authentication) {
+		// header
+		
+			List<String> listRoles = authentication.getAuthorities()
+					                               .stream()
+					                               .map(GrantedAuthority::getAuthority).toList();
+
+	        model.addAttribute("userName", authentication.getName());
+	        model.addAttribute("userListRoles", listRoles);
+	        
+	    // main
+	        model.addAttribute("newBook", new Book());
+	        return "book_form";
 	}
 
 }
