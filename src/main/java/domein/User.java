@@ -1,6 +1,8 @@
 package domein;
 
 import java.io.Serializable;
+import java.security.SecureRandom;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,11 +35,14 @@ public class User implements Serializable {
     private String role;
     
     private int enabled;
+    
+    private int maxVotes;
 
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
 		this.role = "ROLE_USER";
 		this.enabled = 1;
+		this.maxVotes = new SecureRandom().nextInt(10);
 	}
 }
