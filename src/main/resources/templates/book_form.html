@@ -81,6 +81,8 @@
 			
 			 -->
 			<button type="submit">OK</button>
+			
+			<div th:if="${message}" th:class="${message.type}" th:text="${message.message}"></div> 
 
 		</form>
 	</div>

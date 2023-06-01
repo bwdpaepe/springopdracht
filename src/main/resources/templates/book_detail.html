@@ -46,7 +46,7 @@
 		<p th:text="${book.isbn}"></p>
 
 		<h4>Aankoopprijs</h4>
-		<p th:text="|${#numbers.formatDecimal(book.price,1,2)}euro|"></p>
+		<p th:text="|${#numbers.formatDecimal(book.price,1,2)}&euro;|"></p>
 		
 
 		<h4>Aantal sterren</h4>

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Range;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -61,10 +62,12 @@ public class Book implements Serializable {
 	
 	private int numVotes;
 	
+	//@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	@ManyToMany
 	private List<Author> authorList = new ArrayList<>();
 	
 	@OneToMany
+	//@OneToMany(cascade=CascadeType.ALL)
 	private List<Location> locationList = new ArrayList<>();
 	
 	public Book (String name, String image) {
