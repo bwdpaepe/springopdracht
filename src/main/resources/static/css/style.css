@@ -5,6 +5,20 @@ html {
 	font-family: roboto, Arial, serif;
 }
 
+table {
+	border-collapse: collapse;
+}
+
+table, tr, th , td {
+	border: black solid 1px;
+	
+}
+
+th , td {
+	padding: 2px;
+	
+}
+
 /* header */
 header {
 	border-bottom: black solid 1px;	
@@ -132,4 +146,22 @@ body {
 .card {
   border: 2px solid rgb(96, 139, 168);
   border-radius: 5px;
+}
+
+/* book detail page */
+aside {
+	margin-top: 20px;
+	margin-right: 20px;
+    float: left;
+    width: 200px;
+}
+
+.book-detail-wrapper {
+	margin-top: 20px;
+    overflow: auto;
+	width: auto;
+}
+
+.book-detail-wrapper > h1{
+	margin-top: 0;
 }

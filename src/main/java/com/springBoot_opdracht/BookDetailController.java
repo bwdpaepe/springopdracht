@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import domein.Author;
 import domein.Book;
+import domein.Location;
 import jakarta.validation.Valid;
 import service.BookService;
 import validator.LocationValidation;
@@ -41,7 +43,12 @@ public class BookDetailController {
         	return "redirect:/welcome";
         }
         
+        List<Author> authorsList = bookService.findAuthorsById(bookId);
+        List<Location> locationsList = bookService.findLocationById(bookId);
+        
         model.addAttribute("book", book);
+        model.addAttribute("authorsList", authorsList);
+        model.addAttribute("locationsList", locationsList);
         
 
 		return "book_detail";

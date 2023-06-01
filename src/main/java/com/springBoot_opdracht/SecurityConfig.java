@@ -40,6 +40,7 @@ public class SecurityConfig{
                 		requests.requestMatchers("/login**").permitAll()
             	        		.requestMatchers("/css/**").permitAll()
             	        		.requestMatchers("/img/**").permitAll()
+            	        		.requestMatchers("/book/**").permitAll()	//TODO
             	        		.requestMatchers("/*")
             	        		.access(new WebExpressionAuthorizationManager("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")))
                 .formLogin(form -> 
