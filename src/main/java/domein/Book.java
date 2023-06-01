@@ -7,17 +7,21 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Range;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import validator.ValidISBN;
 
 @Entity
 @Getter
@@ -36,10 +40,14 @@ public class Book implements Serializable {
 	@NotBlank(message="{book_image_notblank}")
 	private String image;
 	
-	@Range(min=1000000000000L, max=9999999999999L)
+	@Column(unique=true)
+	@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")
+	@ValidISBN
 	private long isbn;
 	
 	@Positive
+	@DecimalMin(value = "0.01", message = "book_price_min")
+	@DecimalMax(value = "99.99", message = "book_price_max")
 	private double price;
 	
 	@ManyToMany
@@ -51,6 +59,14 @@ public class Book implements Serializable {
 	public Book (String name, String image) {
 		this.name = name;
 		this.image = image;
+		this.price = new SecureRandom().nextDouble(0.00, 100.00);
+		//this.authorSet = authorSet;
+	}
+	
+	public Book (String name, String image, long isbn) {
+		this.name = name;
+		this.image = image;
+		this.isbn = isbn;
 		this.price = new SecureRandom().nextDouble(20.00, 40.00);
 		//this.authorSet = authorSet;
 	}

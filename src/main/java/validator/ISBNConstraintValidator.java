@@ -17,6 +17,10 @@ public class ISBNConstraintValidator implements ConstraintValidator<ValidISBN, L
 	}
 	
 	public boolean isISBN(Long value) {
+		if( String.valueOf(value).length() != 13) {
+			return false;
+		}
+		
 		//System.out.println(value);
 		boolean isISBN = false;
 		int evenRay[] = digitToArray(value, true);
@@ -25,8 +29,6 @@ public class ISBNConstraintValidator implements ConstraintValidator<ValidISBN, L
 		//System.out.println(oddRay);
 		
 		// check
-		int valueNumberOfDigits = String.valueOf(value).length();
-		long divider = valueNumberOfDigits > 1 ? (long) Math.pow(10, valueNumberOfDigits - 1) : 1L;
 		int check = (int) (value % 10);
 		//System.out.println(divider);
 		//System.out.println(check);
@@ -56,14 +58,15 @@ public class ISBNConstraintValidator implements ConstraintValidator<ValidISBN, L
 		int array[] = new int[valueNumberOfDigits / 2];
 		int counter = 0;
 		while (divider / 10L >= 1) {
+			//System.out.printf("value: %d%n", value);
+			//System.out.printf("divider: %d%n", divider);
 			if(valueNumberOfDigits == dividerNumberOfDigits) {
-				//System.out.printf("value: %d%n", value);
-				//System.out.printf("divider: %d%n", divider);
+				
 				int currentDigit = (int) (value / divider);
 				//System.out.printf("current: %d%n", currentDigit);
 				//System.out.printf("counter: %d%n", counter);
 				//System.out.printf("num digits: %d%n" ,valueNumberOfDigits);
-				if((valueNumberOfDigits % 2 == 0) == even) {
+				if((dividerNumberOfDigits % 2 == 0) == even) {
 					//System.out.println("add to array");
 					array[counter] = currentDigit;
 					counter++;
@@ -73,7 +76,10 @@ public class ISBNConstraintValidator implements ConstraintValidator<ValidISBN, L
 			}
 			else {
 				int currentDigit = 0;
-				if(((valueNumberOfDigits+1) % 2 == 0) == even) {
+				//System.out.printf("current: %d%n", currentDigit);
+				//System.out.printf("counter: %d%n", counter);
+				//System.out.printf("num digits: %d%n" ,valueNumberOfDigits);
+				if(((dividerNumberOfDigits) % 2 == 0) == even) {
 					//System.out.println("add to array");
 					array[counter] = currentDigit;
 					counter++;
