@@ -7,17 +7,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import domein.Book;
+import jakarta.validation.Valid;
 import service.BookService;
 
 @Controller
+@RequestMapping("/welcome")
 public class WelcomeController {
 	
 	@Autowired
 	private BookService bookService;
 
-	@GetMapping(value = "/welcome")
+	@GetMapping
     public String printWelcome(Model model, Authentication authentication) {
 		
 		// header
@@ -34,5 +40,15 @@ public class WelcomeController {
         
         return "hello";
     }
+	
+	@PostMapping
+	public String onSubmit(@Valid Book newBook, BindingResult result) {
+		//todo add locationvalidation
+		if (result.hasErrors()) {
+			return "book_form";
+		}
+		return "hello";
+	}
+	
 
 }

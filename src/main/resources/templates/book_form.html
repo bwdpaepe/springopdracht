@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div th:replace="header.html :: header(userName=${userName}, userListRoles=${userListRoles})"></div>
+	<main class="book-detail">
+	<aside>
+		<nav>
+			<form action="#" th:action="@{/welcome}" method="post">
+			<table>
+				<tr>
+					<td th:text="#{login_user}">Backup User:</td>
+					<td><input type='text' name='email' value=''></td>
+				</tr>
+				<tr>
+					<td th:text="#{login_password}">Backup Password:</td>
+					<td><input type='password' name='password' /></td>
+				</tr>
+				<tr>
+					<td colspan='2'><button name="submit" type="submit" th:text="#{login_button}">Backup Login</button></td>
+				</tr>
+			</table>
+
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+
+		</form>
+		</nav>
+	</aside>
+	<div class="book-detail-wrapper">
+		<h1 th:text="#{book_add_title}">backup h1</h1>
+		<hr/>
+
+		<form th:action="@{/welcome}" th:object="${newBook}" method="post">
+		
+			<p>
+	            <label>naam:</label>
+	            <input type="text" th:field="*{name}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>afbeelding:</label>
+	            <input type="text" th:field="*{image}" placeholder="afbeelding" size="20"/>
+	            <span th:if="${#fields.hasErrors('image')}" th:errorclass="error" th:errors="*{image}"></span>
+	        </p>
+	       
+	        <!-- <p>
+	            <label>Confirm Password:</label>
+	            <input type="password" th:field="*{confirmPassword}" placeholder="confirm password" size="20"/>
+	            <span th:if="${#fields.hasErrors('confirmPassword')}" th:errorclass="error" th:errors="*{confirmPassword}"></span>
+	        </p>
+	
+	        <p>
+	            <label>Email:</label>
+	            <input type="text" th:field="*{email}" placeholder="email" size="20"/>
+	            <span th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></span>
+	        </p>
+			
+
+			Choose color:
+			<select th:field="*{colorSelected}">
+				<option th:each="color: ${colorsList}"
+					th:value="${color}" th:text="${color}">
+			</select>
+			
+			 -->
+			<button type="submit">OK</button>
+
+		</form>
+	</div>
+	</main>
+</body>
+</html>

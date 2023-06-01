@@ -20,7 +20,6 @@ import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import validator.ValidISBN;
@@ -33,7 +32,7 @@ import validator.ValidISBN;
 	query = "SELECT b.locationList FROM Book b WHERE :Id = b.id")
 })
 @Getter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor
 public class Book implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
