@@ -41,20 +41,20 @@ public class Book implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotBlank(message="{book_name_notblank}")
+	//@NotBlank(message="{book_name_notblank}")
 	private String name;
 	
-	@NotBlank(message="{book_image_notblank}")
+	//@NotBlank(message="{book_image_notblank}")
 	private String image;
 	
 	@Column(unique=true)
-	@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")
-	@ValidISBN
+	//@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")
+	//@ValidISBN
 	private long isbn;
 	
-	@Positive
-	@DecimalMin(value = "0.01", message = "book_price_min")
-	@DecimalMax(value = "99.99", message = "book_price_max")
+	//@Positive
+	//@DecimalMin(value = "0.01", message="{book_price_min}")
+	//@DecimalMax(value = "99.99", message="{book_price_max}")
 	private double price;
 	
 	private int numVotes;

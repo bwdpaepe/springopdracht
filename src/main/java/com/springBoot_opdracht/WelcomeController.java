@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import domein.Book;
 import jakarta.validation.Valid;
+import repository.BookRepository;
 import service.BookService;
 
 @Controller
@@ -22,7 +23,10 @@ public class WelcomeController {
 	
 	@Autowired
 	private BookService bookService;
-
+	
+	@Autowired
+	private BookRepository br;
+	
 	@GetMapping
     public String printWelcome(Model model, Authentication authentication) {
 		
@@ -42,11 +46,12 @@ public class WelcomeController {
     }
 	
 	@PostMapping
-	public String onSubmit(@Valid Book newBook, BindingResult result) {
+	public String onSubmit(@Valid Book book, BindingResult result) {
 		//todo add locationvalidation
 		if (result.hasErrors()) {
 			return "book_form";
 		}
+		br.save(book);
 		return "hello";
 	}
 	

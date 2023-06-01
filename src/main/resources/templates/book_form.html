@@ -34,7 +34,7 @@
 		<h1 th:text="#{book_add_title}">backup h1</h1>
 		<hr/>
 
-		<form th:action="@{/welcome}" th:object="${newBook}" method="post">
+		<form th:action="@{/welcome}" th:object="${book}" method="post">
 		
 			<p>
 	            <label>naam:</label>
@@ -46,6 +46,18 @@
 	            <label>afbeelding:</label>
 	            <input type="text" th:field="*{image}" placeholder="afbeelding" size="20"/>
 	            <span th:if="${#fields.hasErrors('image')}" th:errorclass="error" th:errors="*{image}"></span>
+	        </p>
+	        
+	        <p>
+	            <label>ISBN:</label>
+	            <input type="text" th:field="*{isbn}" placeholder="ISBN" size="20"/>
+	            <span th:if="${#fields.hasErrors('isbn')}" th:errorclass="error" th:errors="*{isbn}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>prijs:</label>
+	            <input type="text" th:field="*{price}" placeholder="prijs" size="20"/>
+	            <span th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}"></span>
 	        </p>
 	       
 	        <!-- <p>

@@ -68,7 +68,7 @@ public class BookDetailController {
 	        model.addAttribute("userListRoles", listRoles);
 	        
 	    // main
-	        model.addAttribute("newBook", new Book());
+	        model.addAttribute("book", new Book());
 	        return "book_form";
 	}
 
