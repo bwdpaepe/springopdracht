@@ -54,4 +54,10 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.locationsOfBook(Id);
 	}
 
+	@Override
+	public void save(Book book) {
+		bookRepository.save(book);
+		
+	}
+
 }

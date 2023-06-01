@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import domein.Book;
 import jakarta.validation.Valid;
-import repository.BookRepository;
 import service.BookService;
 
 @Controller
@@ -23,9 +22,6 @@ public class WelcomeController {
 	
 	@Autowired
 	private BookService bookService;
-	
-	@Autowired
-	private BookRepository br;
 	
 	@GetMapping
     public String printWelcome(Model model, Authentication authentication) {
@@ -51,7 +47,8 @@ public class WelcomeController {
 		if (result.hasErrors()) {
 			return "book_form";
 		}
-		br.save(book);
+		
+		bookService.save(book);
 		return "hello";
 	}
 	

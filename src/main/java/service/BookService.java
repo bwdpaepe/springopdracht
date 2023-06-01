@@ -18,4 +18,6 @@ public interface BookService {
 	public List<Author> findAuthorsById(Long Id);
 	
 	public List<Location> findLocationById(Long Id);
+	
+	public void save(Book book);
 }
