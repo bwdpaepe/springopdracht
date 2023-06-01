@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -24,6 +26,12 @@ import lombok.NoArgsConstructor;
 import validator.ValidISBN;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Book.authorsOfBook",
+	query = "SELECT b.authorList FROM Book b WHERE :Id = b.id"),
+	@NamedQuery(name = "Book.locationsOfBook",
+	query = "SELECT b.locationList FROM Book b WHERE :Id = b.id")
+})
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book implements Serializable {

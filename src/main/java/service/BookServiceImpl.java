@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import domein.Author;
 import domein.Book;
 import domein.BookRow;
+import domein.Location;
 import repository.BookRepository;
 
 public class BookServiceImpl implements BookService {
@@ -40,6 +42,16 @@ public class BookServiceImpl implements BookService {
 				                            		                   )
 				                            		).collect(Collectors.toList());
 		return catalogBookRow;
+	}
+
+	@Override
+	public List<Author> findAuthorsById(Long Id) {
+		return bookRepository.authorsOfBook(Id);
+	}
+
+	@Override
+	public List<Location> findLocationById(Long Id) {
+		return bookRepository.locationsOfBook(Id);
 	}
 
 }
