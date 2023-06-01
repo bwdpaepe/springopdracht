@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import domein.Author;
 import domein.Book;
+import domein.Bookform;
 import domein.Location;
 import jakarta.validation.Valid;
+import service.AuthorService;
 import service.BookService;
 import validator.LocationValidation;
 
@@ -27,6 +29,9 @@ public class BookDetailController {
 	
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private AuthorService authorService;
 	
 	@GetMapping(value = "/{id}")
 	public String bookDetail(@PathVariable("id") Long bookId, Model model, Authentication authentication) {
@@ -70,7 +75,10 @@ public class BookDetailController {
 	        model.addAttribute("userListRoles", listRoles);
 	        
 	    // main
-	        model.addAttribute("book", new Book());
+	        
+	        List<Author> authorList = authorService.findAll();
+	        model.addAttribute("authorList", authorList);
+	        model.addAttribute("bookform", new Bookform());
 	        return "book_form";
 	}
 

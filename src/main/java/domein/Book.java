@@ -85,6 +85,14 @@ public class Book implements Serializable {
 		this.numVotes = new SecureRandom().nextInt(1,100);
 	}
 	
+	public Book (String name, String image, long isbn, double price) {
+		this.name = name;
+		this.image = image;
+		this.isbn = isbn;
+		this.price = price;
+		this.numVotes = 0;
+	}
+	
 	public void addAuthor(Author author) {
 		this.authorList.add(author);
 	}

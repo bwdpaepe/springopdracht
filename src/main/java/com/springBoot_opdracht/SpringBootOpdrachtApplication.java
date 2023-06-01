@@ -10,8 +10,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import service.AuthorService;
+import service.AuthorServiceImpl;
 import service.BookService;
 import service.BookServiceImpl;
+import service.LocationService;
+import service.LocationServiceImpl;
 import validator.LocationValidation;
 
 @SpringBootApplication
@@ -36,6 +40,16 @@ public class SpringBootOpdrachtApplication implements WebMvcConfigurer {
 	@Bean
 	BookService bookService() {
 		return new BookServiceImpl();
+	}
+	
+	@Bean
+	AuthorService authorService() {
+		return new AuthorServiceImpl();
+	}
+	
+	@Bean
+	LocationService locationService() {
+		return new LocationServiceImpl();
 	}
 	
 	@Bean

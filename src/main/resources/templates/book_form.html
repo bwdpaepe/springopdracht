@@ -34,7 +34,7 @@
 		<h1 th:text="#{book_add_title}">backup h1</h1>
 		<hr/>
 
-		<form th:action="@{/welcome}" th:object="${book}" method="post">
+		<form th:action="@{/welcome}" th:object="${bookform}" method="post">
 		
 			<p>
 	            <label>naam:</label>
@@ -58,6 +58,63 @@
 	            <label>prijs:</label>
 	            <input type="text" th:field="*{price}" placeholder="prijs" size="20"/>
 	            <span th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}"></span>
+	        </p>
+	        
+	        <p>
+	        	<label>auteur1:</label>
+	        	<select class="form-control" id="exampleFormControlSelect1" th:field="*{author1}">
+                    <option th:each="aut : ${authorList}" th:value="${(aut.getId())}" th:text="${aut.getName()}"></option>
+                </select>
+	        </p>
+	       
+	        <p>
+	        	<label>auteur2:</label>
+	        	<select class="form-control" id="exampleFormControlSelect2" th:field="*{author2}">
+                    <option th:each="aut : ${authorList}" th:value="${(aut.getId())}" th:text="${aut.getName()}"></option>
+                </select>
+	        </p>
+	       
+	        <p>
+	        	<label>auteur3:</label>
+	        	<select class="form-control" id="exampleFormControlSelect3" th:field="*{author3}">
+                    <option th:each="aut : ${authorList}" th:value="${(aut.getId())}" th:text="${aut.getName()}"></option>
+                </select>
+	        </p>
+	       
+	        <p>
+	            <label>naam loc 1:</label>
+	            <input type="text" th:field="*{locationName1}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('locationName1')}" th:errorclass="error" th:errors="*{locationName1}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>code loc 11:</label>
+	            <input type="text" th:field="*{locationCode11}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('locationCode11')}" th:errorclass="error" th:errors="*{locationCode11}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>cod loc 12:</label>
+	            <input type="text" th:field="*{locationCode12}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('locationCode12')}" th:errorclass="error" th:errors="*{locationCode12}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>naam loc 2:</label>
+	            <input type="text" th:field="*{locationName2}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('locationName2')}" th:errorclass="error" th:errors="*{locationName2}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>code loc 21:</label>
+	            <input type="text" th:field="*{locationCode21}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('locationCode21')}" th:errorclass="error" th:errors="*{locationCode21}"></span>
+	        </p>
+	       
+	        <p>
+	            <label>cod loc 22:</label>
+	            <input type="text" th:field="*{locationCode22}" placeholder="naam" size="20"/>
+	            <span th:if="${#fields.hasErrors('locationCode22')}" th:errorclass="error" th:errors="*{locationCode22}"></span>
 	        </p>
 	       
 	        <!-- <p>
