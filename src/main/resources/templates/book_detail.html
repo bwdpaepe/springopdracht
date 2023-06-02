@@ -11,21 +11,16 @@
 	<aside>
 		<img th:alt="${book.name}" th:src="${book.image}"/>
 		<nav>
-			<form action="#" th:action="@{/welcome}" method="post">
-			<table>
-				<tr>
-					<td th:text="#{login_user}">Backup User:</td>
-					<td><input type='text' name='email' value=''></td>
-				</tr>
-				<tr>
-					<td th:text="#{login_password}">Backup Password:</td>
-					<td><input type='password' name='password' /></td>
-				</tr>
-				<tr>
-					<td colspan='2'><button name="submit" type="submit" th:text="#{login_button}">Backup Login</button></td>
-				</tr>
-			</table>
-
+			<form th:action="@{/book/voted/up}" th:object="${bookVoted}" method="post">
+			
+				<p>
+					<input type="hidden" th:field="*{bookId}">
+				</p>
+			
+				<p>
+					<button name="submit" type="submit" th:text="#{vote_do_button}">Backup vote do</button>
+				</p>
+			
 			<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 
 		</form>
