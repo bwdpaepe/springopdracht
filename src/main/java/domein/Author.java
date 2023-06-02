@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,6 +21,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@NamedQueries({
+	@NamedQuery(name = "Author.booksFromAuthor",
+	query = "SELECT bookList FROM Author a JOIN a.bookList b WHERE :Id = a.id")
+})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Author implements Serializable {
 	

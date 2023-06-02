@@ -26,7 +26,5 @@ public interface BookService {
 	
 	public List<BookPopular> findPopularBooks();
 	
-	public List<Book> findByAuthor(String name);
-	
 	public Book findByISBN(long isbn);
 }

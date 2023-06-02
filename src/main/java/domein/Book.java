@@ -38,9 +38,7 @@ import lombok.Setter;
 	@NamedQuery(name = "Book.votesOfBook",
 	query = "SELECT COUNT(*) FROM Book b JOIN b.userList u WHERE :Id = b.id"),
 	@NamedQuery(name = "Book.popularBooks",
-	query = "SELECT new domein.BookPopular(b.id as id, b.name as name, COUNT(*) as numVotes) FROM Book b JOIN b.userList u GROUP BY b.id ORDER BY numVotes DESC, name"),
-	@NamedQuery(name = "Book.booksFromAuthor",
-	query = "SELECT * FROM Author a JOIN a.bookList b WHERE :Id = a.id")
+	query = "SELECT new domein.BookPopular(b.id as id, b.name as name, COUNT(*) as numVotes) FROM Book b JOIN b.userList u GROUP BY b.id ORDER BY numVotes DESC, name")
 })
 @Getter
 @Setter

@@ -21,8 +21,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	
 	List<BookPopular> popularBooks();
 	
-	List<Book> booksFromAuthor(@Param("Id") long Id);
-	
 	Book findByIsbn(long isbn);
 
 }

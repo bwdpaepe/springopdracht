@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import domein.Author;
+import domein.Book;
 import repository.AuthorRepository;
 
 public class AuthorServiceImpl implements AuthorService {
 	
 	@Autowired 
 	AuthorRepository authorRepository;
-
+	
 	@Override
 	public List<Author> findByBookId(Long Id) {
 		// TODO Auto-generated method stub
@@ -27,5 +28,13 @@ public class AuthorServiceImpl implements AuthorService {
 	public Author findByName(String name) {
 		return authorRepository.findByName(name);
 	}
+	
+	@Override
+	public List<Book> findByAuthor(String name) {
+		Author author = this.findByName(name);
+		return authorRepository.booksFromAuthor(author.getId());
+	}
+
+	
 
 }
