@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import domein.Author;
 import domein.Book;
+import domein.BookPopular;
 import domein.BookRow;
 import domein.Location;
 import repository.BookRepository;
@@ -63,6 +64,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int getNumVotes(Long Id) {
 		return bookRepository.votesOfBook(Id);
+	}
+
+	@Override
+	public List<BookPopular> findPopularBooks() {
+		return bookRepository.popularBooks();
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import domein.Author;
 import domein.Book;
+import domein.BookPopular;
 import domein.BookRow;
 import domein.Location;
 
@@ -22,4 +23,6 @@ public interface BookService {
 	public void save(Book book);
 	
 	public int getNumVotes(Long Id);
+	
+	public List<BookPopular> findPopularBooks();
 }
