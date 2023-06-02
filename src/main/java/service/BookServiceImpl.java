@@ -19,6 +19,9 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	BookRepository bookRepository;
 	
+	@Autowired
+	AuthorService authorService;
+	
 	@Override
 	public List<Book> findAll() {
 		return (List<Book>) bookRepository.findAll();
@@ -79,6 +82,13 @@ public class BookServiceImpl implements BookService {
 			throw new BookNotFoundException(isbn);
 		}
 		return book;
+	}
+
+	@Override
+	public Book createDummyBook() {
+		Book aBook = new Book("Romeo and Juliet", "https://www.gutenberg.org/cache/epub/1513/pg1513.cover.medium.jpg", 9787698540261L);
+		aBook.addAuthor(authorService.findByName("Shakespeare, William"));
+		return aBook;
 	}
 
 }

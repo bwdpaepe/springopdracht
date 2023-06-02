@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import perform.PerformRestExample;
 import service.AuthorService;
 import service.AuthorServiceImpl;
 import service.BookService;
@@ -30,6 +31,15 @@ public class SpringBootOpdrachtApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootOpdrachtApplication.class, args);
+		
+		// UNCOMMENT TO RUN WEB CLIENT REACTIVE SPRING
+		/*
+		try {
+			new PerformRestExample();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		*/
 	}
 	
 	@Override

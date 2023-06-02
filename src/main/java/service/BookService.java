@@ -27,4 +27,6 @@ public interface BookService {
 	public List<BookPopular> findPopularBooks();
 	
 	public Book findByISBN(long isbn);
+	
+	public Book createDummyBook();
 }
