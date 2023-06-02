@@ -22,6 +22,7 @@ import jakarta.validation.Valid;
 import service.BookService;
 import service.LocationService;
 import utility.Message;
+import validator.LocationValidation;
 
 @Controller
 @RequestMapping("/welcome")
@@ -34,7 +35,11 @@ public class WelcomeController {
 	@Autowired
 	private LocationService locationService;
 	
-	@Autowired MessageSource messageSource;
+	@Autowired 
+	private MessageSource messageSource;
+	
+	@Autowired
+	private LocationValidation locationValidation;
 	
 	@GetMapping
     public String printWelcome(Model model, Authentication authentication) {
@@ -56,7 +61,16 @@ public class WelcomeController {
 	
 	@PostMapping
 	public String onSubmit(@Valid Bookform bookForm, BindingResult result, Model model, Locale locale) {
-		//todo add locationvalidation
+		Location location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
+		locationValidation.validate(location, result);
+		if(bookForm.getLocationName2()!= null) {
+			location = new Location(bookForm.getLocationName2(),bookForm.getLocationCode21(),bookForm.getLocationCode22());
+			locationValidation.validate(location, result);
+		}
+		if(bookForm.getLocationName3()!= null) {
+			location = new Location(bookForm.getLocationName3(),bookForm.getLocationCode31(),bookForm.getLocationCode32());
+			locationValidation.validate(location, result);
+		}
 		if (result.hasErrors()) {
 			model.addAttribute("message",
 					new Message("error",
@@ -65,13 +79,10 @@ public class WelcomeController {
 			return "book_form";
 		}
 		
-		System.out.println(bookForm.getAuthor1());
-		Location location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
-		locationService.save(location);
-		location = new Location(bookForm.getLocationName2(),bookForm.getLocationCode21(),bookForm.getLocationCode22());
-		locationService.save(location);
-		//TODO add location3
+		//System.out.println(bookForm.getAuthor1());
 		
+		
+				
 		Book book = new Book(
 				bookForm.getName(),
 				bookForm.getImage(),
@@ -79,10 +90,27 @@ public class WelcomeController {
 				bookForm.getPrice()
 				);
 		book.addAuthor(bookForm.getAuthor1());
-		book.addAuthor(bookForm.getAuthor2());
-		book.addAuthor(bookForm.getAuthor3());
+		if(bookForm.getAuthor2()!= null) {
+			book.addAuthor(bookForm.getAuthor2());
+		}
+		if(bookForm.getAuthor3()!= null) {
+			book.addAuthor(bookForm.getAuthor3());
+		}
+		location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
+		locationService.save(location);
 		book.addLocation(locationService.findByName(bookForm.getLocationName1()));
-		book.addLocation(locationService.findByName(bookForm.getLocationName2()));
+		if(bookForm.getLocationName2()!= null) {
+			location = new Location(bookForm.getLocationName2(),bookForm.getLocationCode21(),bookForm.getLocationCode22());
+			locationService.save(location);
+			
+			book.addLocation(locationService.findByName(bookForm.getLocationName2()));
+		}
+		if(bookForm.getLocationName3()!= null) {
+			location = new Location(bookForm.getLocationName3(),bookForm.getLocationCode31(),bookForm.getLocationCode32());
+			locationService.save(location);
+
+			book.addLocation(locationService.findByName(bookForm.getLocationName3()));
+		}
 		
 		bookService.save(book);
 		model.addAttribute("message",
