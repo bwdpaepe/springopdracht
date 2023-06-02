@@ -11,6 +11,7 @@ import domein.Book;
 import domein.BookPopular;
 import domein.BookRow;
 import domein.Location;
+import exceptions.BookNotFoundException;
 import repository.BookRepository;
 
 public class BookServiceImpl implements BookService {
@@ -73,7 +74,11 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book findByISBN(long isbn) {
-		return bookRepository.findByIsbn(isbn);
+		Book book = bookRepository.findByIsbn(isbn);
+		if(book == null) {
+			throw new BookNotFoundException(isbn);
+		}
+		return book;
 	}
 
 }

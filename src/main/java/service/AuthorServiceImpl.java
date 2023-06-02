@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import domein.Author;
 import domein.Book;
+import exceptions.AuthorNotFoundException;
 import repository.AuthorRepository;
 
 public class AuthorServiceImpl implements AuthorService {
@@ -32,6 +33,9 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public List<Book> findByAuthor(String name) {
 		Author author = this.findByName(name);
+		if(author == null) {
+			throw new AuthorNotFoundException(name);
+		}
 		return authorRepository.booksFromAuthor(author.getId());
 	}
 
