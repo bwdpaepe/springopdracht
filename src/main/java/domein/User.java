@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "User.booksOfUser",
+	query = "SELECT u.bookList FROM User u WHERE :Id = u.id")
+})
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor

@@ -21,6 +21,7 @@ import domein.Book;
 import domein.BookForm;
 import domein.BookVoted;
 import domein.Location;
+import domein.User;
 import jakarta.validation.Valid;
 import service.AuthorService;
 import service.BookService;
@@ -64,6 +65,23 @@ public class BookDetailController {
         List<Author> authorsList = bookService.findAuthorsById(bookId);
         List<Location> locationsList = bookService.findLocationById(bookId);
         int numVotes = bookService.getNumVotes(bookId);
+        
+        User user = userService.findByEmail(authentication.getName());
+        List<Book> booksOfUser = userService.booksOfUser(user.getId());
+        
+        if (booksOfUser.isEmpty()) {
+        	model.addAttribute("vote", "up");
+        }
+        else if (booksOfUser.size() == user.getMaxVotes()) {
+        	model.addAttribute("vote", "down");
+        }
+        else if(booksOfUser.contains(book)) {
+        	model.addAttribute("vote", "down");
+        }
+        else {
+        	model.addAttribute("vote", "up");
+        }
+        
         
         model.addAttribute("book", book);
         model.addAttribute("authorsList", authorsList);

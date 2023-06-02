@@ -33,7 +33,7 @@ import lombok.Setter;
 	@NamedQuery(name = "Book.locationsOfBook",
 	query = "SELECT b.locationList FROM Book b WHERE :Id = b.id"),
 	@NamedQuery(name = "Book.votesOfBook",
-	query = "SELECT COUNT(*) FROM Book b LEFT JOIN b.userList u WHERE :Id = b.id")
+	query = "SELECT COUNT(*) FROM Book b JOIN b.userList u WHERE :Id = b.id")
 })
 @Getter
 @Setter
