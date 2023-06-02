@@ -2,11 +2,15 @@ package domein;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -37,12 +41,23 @@ public class User implements Serializable {
     private int enabled;
     
     private int maxVotes;
+    
+    @ManyToMany (mappedBy="userList")
+    private List<Book> bookList = new ArrayList<>();
 
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
 		this.role = "ROLE_USER";
 		this.enabled = 1;
-		this.maxVotes = new SecureRandom().nextInt(10);
+		this.maxVotes = new SecureRandom().nextInt(5, 10);
+	}
+	
+	public void addBook(Book book) {
+		this.bookList.add(book);
+	}
+	
+	public void removeBook(Book book) {
+		this.bookList.remove(book);
 	}
 }

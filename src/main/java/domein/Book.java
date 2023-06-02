@@ -31,7 +31,9 @@ import lombok.Setter;
 	@NamedQuery(name = "Book.authorsOfBook",
 	query = "SELECT b.authorList FROM Book b WHERE :Id = b.id"),
 	@NamedQuery(name = "Book.locationsOfBook",
-	query = "SELECT b.locationList FROM Book b WHERE :Id = b.id")
+	query = "SELECT b.locationList FROM Book b WHERE :Id = b.id"),
+	@NamedQuery(name = "Book.votesOfBook",
+	query = "SELECT COUNT(*) FROM Book b LEFT JOIN b.userList u WHERE :Id = b.id")
 })
 @Getter
 @Setter
@@ -70,6 +72,9 @@ public class Book implements Serializable {
 	//@OneToMany(cascade=CascadeType.ALL)
 	private List<Location> locationList = new ArrayList<>();
 	
+	@ManyToMany
+	private List<User> userList = new ArrayList<>();
+	
 	public Book (String name, String image) {
 		this.name = name;
 		this.image = image;
@@ -99,6 +104,14 @@ public class Book implements Serializable {
 	
 	public void addLocation(Location location) {
 		this.locationList.add(location);
+	}
+	
+	public void addUser(User user) {
+		this.userList.add(user);
+	}
+	
+	public void removeUser(User user) {
+		this.userList.remove(user);
 	}
 	
 

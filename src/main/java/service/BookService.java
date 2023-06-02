@@ -20,4 +20,6 @@ public interface BookService {
 	public List<Location> findLocationById(Long Id);
 	
 	public void save(Book book);
+	
+	public int getNumVotes(Long Id);
 }

@@ -60,4 +60,9 @@ public class BookServiceImpl implements BookService {
 		
 	}
 
+	@Override
+	public int getNumVotes(Long Id) {
+		return bookRepository.votesOfBook(Id);
+	}
+
 }

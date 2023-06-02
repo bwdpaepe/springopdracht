@@ -54,10 +54,12 @@ public class BookDetailController {
         
         List<Author> authorsList = bookService.findAuthorsById(bookId);
         List<Location> locationsList = bookService.findLocationById(bookId);
+        int numVotes = bookService.getNumVotes(bookId);
         
         model.addAttribute("book", book);
         model.addAttribute("authorsList", authorsList);
         model.addAttribute("locationsList", locationsList);
+        model.addAttribute("numVotes", numVotes);
         
 
 		return "book_detail";

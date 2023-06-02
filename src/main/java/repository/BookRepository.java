@@ -16,6 +16,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	
 	List<Location> locationsOfBook(@Param("Id") long Id);
 	
-	
+	int votesOfBook(@Param("Id") long Id);
 
 }
