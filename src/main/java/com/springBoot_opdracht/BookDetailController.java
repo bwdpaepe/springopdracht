@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import domein.Author;
 import domein.Book;
-import domein.Bookform;
+import domein.BookForm;
 import domein.Location;
 import jakarta.validation.Valid;
 import service.AuthorService;
@@ -78,7 +78,7 @@ public class BookDetailController {
 	        
 	        List<Author> authorList = authorService.findAll();
 	        model.addAttribute("authorList", authorList);
-	        model.addAttribute("bookform", new Bookform());
+	        model.addAttribute("bookForm", new BookForm());
 	        return "book_form";
 	}
 

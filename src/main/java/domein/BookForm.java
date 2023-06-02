@@ -21,7 +21,7 @@ import validator.ValidISBN;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bookform {
+public class BookForm {
 	
 	@NotBlank(message="{book_name_notblank}")
 	private String name;

@@ -16,6 +16,9 @@ import service.BookService;
 import service.BookServiceImpl;
 import service.LocationService;
 import service.LocationServiceImpl;
+import validator.BookFormLocation1Validation;
+import validator.BookFormLocation2Validation;
+import validator.BookFormLocation3Validation;
 import validator.LocationValidation;
 
 @SpringBootApplication
@@ -55,6 +58,21 @@ public class SpringBootOpdrachtApplication implements WebMvcConfigurer {
 	@Bean
 	LocationValidation locationValidation() {
 		return new LocationValidation();
+	}
+	
+	@Bean
+	BookFormLocation1Validation bfl1Validation() {
+		return new BookFormLocation1Validation();
+	}
+	
+	@Bean
+	BookFormLocation2Validation bfl2Validation() {
+		return new BookFormLocation2Validation();
+	}
+	
+	@Bean
+	BookFormLocation3Validation bfl3Validation() {
+		return new BookFormLocation3Validation();
 	}
 
 }

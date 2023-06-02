@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import domein.Book;
-import domein.Bookform;
+import domein.BookForm;
 import domein.Location;
 import jakarta.validation.Valid;
 import service.BookService;
 import service.LocationService;
 import utility.Message;
+import validator.BookFormLocation1Validation;
+import validator.BookFormLocation2Validation;
+import validator.BookFormLocation3Validation;
 import validator.LocationValidation;
 
 @Controller
@@ -40,6 +43,13 @@ public class WelcomeController {
 	
 	@Autowired
 	private LocationValidation locationValidation;
+	
+	@Autowired
+	private BookFormLocation1Validation bfl1Validation;
+	@Autowired
+	private BookFormLocation2Validation bfl2Validation;
+	@Autowired
+	private BookFormLocation3Validation bfl3Validation;
 	
 	@GetMapping
     public String printWelcome(Model model, Authentication authentication) {
@@ -60,16 +70,14 @@ public class WelcomeController {
     }
 	
 	@PostMapping
-	public String onSubmit(@Valid Bookform bookForm, BindingResult result, Model model, Locale locale) {
-		Location location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
-		locationValidation.validate(location, result);
+	public String onSubmit(@Valid BookForm bookForm, BindingResult result, Model model, Locale locale) {
+		bfl1Validation.validate(bookForm, result);
 		if(bookForm.getLocationName2()!= null) {
-			location = new Location(bookForm.getLocationName2(),bookForm.getLocationCode21(),bookForm.getLocationCode22());
-			locationValidation.validate(location, result);
+			System.out.printf("code21: %d%n",bookForm.getLocationCode21());
+			bfl2Validation.validate(bookForm, result);
 		}
 		if(bookForm.getLocationName3()!= null) {
-			location = new Location(bookForm.getLocationName3(),bookForm.getLocationCode31(),bookForm.getLocationCode32());
-			locationValidation.validate(location, result);
+			bfl3Validation.validate(bookForm, result);
 		}
 		if (result.hasErrors()) {
 			model.addAttribute("message",
@@ -96,7 +104,7 @@ public class WelcomeController {
 		if(bookForm.getAuthor3()!= null) {
 			book.addAuthor(bookForm.getAuthor3());
 		}
-		location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
+		Location location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
 		locationService.save(location);
 		book.addLocation(locationService.findByName(bookForm.getLocationName1()));
 		if(bookForm.getLocationName2()!= null) {
