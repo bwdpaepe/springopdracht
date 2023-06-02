@@ -5,6 +5,9 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 //import org.hibernate.validator.constraints.Range;
 
 //import jakarta.persistence.CascadeType;
@@ -35,15 +38,19 @@ import lombok.Setter;
 	@NamedQuery(name = "Book.votesOfBook",
 	query = "SELECT COUNT(*) FROM Book b JOIN b.userList u WHERE :Id = b.id"),
 	@NamedQuery(name = "Book.popularBooks",
-	query = "SELECT new domein.BookPopular(b.id as id, b.name as name, COUNT(*) as numVotes) FROM Book b JOIN b.userList u GROUP BY b.id ORDER BY numVotes DESC, name")
+	query = "SELECT new domein.BookPopular(b.id as id, b.name as name, COUNT(*) as numVotes) FROM Book b JOIN b.userList u GROUP BY b.id ORDER BY numVotes DESC, name"),
+	@NamedQuery(name = "Book.booksFromAuthor",
+	query = "SELECT * FROM Author a JOIN a.bookList b WHERE :Id = a.id")
 })
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonPropertyOrder({"book_id", "name", "image", "ISBN", "price", "authorList", "locationList", "userList"})
 public class Book implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
+	@JsonProperty("book_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -54,6 +61,7 @@ public class Book implements Serializable {
 	//@NotBlank(message="{book_image_notblank}")
 	private String image;
 	
+	@JsonProperty("ISBN")
 	@Column(unique=true)
 	//@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")
 	//@ValidISBN

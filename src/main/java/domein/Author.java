@@ -1,12 +1,15 @@
 package domein;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -28,6 +31,9 @@ public class Author implements Serializable {
 	@Column(unique=true)
 	@NotBlank(message="{author_name_notblank}")
 	private String name;
+	
+	@ManyToMany (mappedBy="authorList")
+	private List<Book> bookList = new ArrayList<>();
 	
 	public Author(String name) {
 		this.name = name;

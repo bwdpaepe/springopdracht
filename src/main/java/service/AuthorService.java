@@ -9,6 +9,7 @@ public interface AuthorService {
 
 	public List<Author> findByBookId(Long Id); 
 	public List<Author> findAll();
+	public Author findByName(String name);
 	
 	 
 }

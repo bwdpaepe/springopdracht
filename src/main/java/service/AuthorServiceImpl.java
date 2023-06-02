@@ -23,4 +23,9 @@ public class AuthorServiceImpl implements AuthorService {
 		return (List<Author>) authorRepository.findAll();
 	}
 
+	@Override
+	public Author findByName(String name) {
+		return authorRepository.findByName(name);
+	}
+
 }

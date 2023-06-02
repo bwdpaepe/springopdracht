@@ -17,6 +17,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	BookRepository bookRepository;
+	
+	@Autowired
+	AuthorService authorService;
 
 	@Override
 	public List<Book> findAll() {
@@ -69,6 +72,18 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<BookPopular> findPopularBooks() {
 		return bookRepository.popularBooks();
+	}
+
+	@Override
+	public List<Book> findByAuthor(String name) {
+		Author author = authorService.findByName(name);
+		return bookRepository.booksFromAuthor(author.getId());
+	}
+
+	@Override
+	public Book findByISBN(long isbn) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

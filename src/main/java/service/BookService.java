@@ -25,4 +25,8 @@ public interface BookService {
 	public int getNumVotes(Long Id);
 	
 	public List<BookPopular> findPopularBooks();
+	
+	public List<Book> findByAuthor(String name);
+	
+	public Book findByISBN(long isbn);
 }
