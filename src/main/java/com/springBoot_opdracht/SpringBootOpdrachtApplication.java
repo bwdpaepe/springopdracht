@@ -32,14 +32,13 @@ public class SpringBootOpdrachtApplication implements WebMvcConfigurer {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootOpdrachtApplication.class, args);
 		
-		// UNCOMMENT TO RUN WEB CLIENT REACTIVE SPRING
-		/*
+		// RUN WEB CLIENT REACTIVE SPRING
 		try {
 			new PerformRestExample();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
+		
 	}
 	
 	@Override

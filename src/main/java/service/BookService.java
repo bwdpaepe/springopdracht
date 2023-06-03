@@ -6,6 +6,7 @@ import domein.Author;
 import domein.Book;
 import domein.BookPopular;
 import domein.BookRow;
+import domein.BookRest;
 import domein.Location;
 
 public interface BookService {
@@ -26,7 +27,7 @@ public interface BookService {
 	
 	public List<BookPopular> findPopularBooks();
 	
-	public Book findByISBN(long isbn);
+	public BookRest findByISBN(long isbn);
 	
 	public Book createDummyBook();
 }

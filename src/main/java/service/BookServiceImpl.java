@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import domein.Author;
 import domein.Book;
+import domein.BookRest;
 import domein.BookPopular;
 import domein.BookRow;
 import domein.Location;
+import domein.User;
 import exceptions.BookNotFoundException;
 import repository.BookRepository;
 
@@ -76,12 +78,21 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book findByISBN(long isbn) {
+	public BookRest findByISBN(long isbn) {
 		Book book = bookRepository.findByIsbn(isbn);
 		if(book == null) {
 			throw new BookNotFoundException(isbn);
 		}
-		return book;
+		List<Author> authorList = book.getAuthorList();
+		List<Location> locationList = book.getLocationList();
+		List<User> userList = book.getUserList();
+		
+		List<String> authors = authorList.stream().map(Author::getName).collect(Collectors.toList());
+		List<String> locations = locationList.stream().map(Location::getName).collect(Collectors.toList());
+		List<String> users = userList.stream().map(User::getEmail).collect(Collectors.toList());
+		
+		BookRest bookRest = new BookRest(book.getId(),book.getName(), book.getImage(),book.getIsbn(), book.getPrice(), authors, locations, users);
+		return bookRest;
 	}
 
 	@Override
