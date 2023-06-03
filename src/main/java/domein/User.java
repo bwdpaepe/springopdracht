@@ -42,7 +42,7 @@ public class User implements Serializable {
 
     private String password;
     
-    private String role;
+    //private String role;
     
     private int enabled;
     
@@ -54,7 +54,7 @@ public class User implements Serializable {
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
-		this.role = "ROLE_USER";
+		//this.role = "ROLE_USER";
 		this.enabled = 1;
 		this.maxVotes = new SecureRandom().nextInt(5, 10);
 	}

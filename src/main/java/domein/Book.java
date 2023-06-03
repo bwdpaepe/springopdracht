@@ -70,7 +70,7 @@ public class Book implements Serializable {
 	//@DecimalMax(value = "99.99", message="{book_price_max}")
 	private double price;
 	
-	private int numVotes;
+	//private int numVotes;
 	
 	//@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	@ManyToMany

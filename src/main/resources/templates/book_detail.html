@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title th:text="#{app_title}">Backup page title</title>
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
@@ -44,29 +44,29 @@
 		<h1 th:text="${book.name}">backup h1</h1>
 		<hr/>
 
-		<h2>Auteurs</h2>
+		<h2 th:text="#{book_detail_author_label}">Backup auteurs</h2>
 		<ul>
 		<th:block th:each="author,iter: ${authorsList}">
 			<li th:text="${author.name}"></li>
 		</th:block>
 		</ul>
 		
-		<h3>ISBN</h3>
+		<h3 th:text="#{book_detail_isbn_label}">Backup ISBN</h3>
 		<p th:text="${book.isbn}"></p>
 
-		<h4>Aankoopprijs</h4>
+		<h4 th:text="#{book_detail_price_label}">Backup price</h4>
 		<p th:text="|${#numbers.formatDecimal(book.price,1,2)}&euro;|"></p>
 		
 
-		<h4>Aantal sterren</h4>
+		<h4 th:text="#{book_detail_stars_label}">Backup stars</h4>
 		<p th:text="${numVotes}"></p>
 		
-		<h4>Locaties</h4>
+		<h4 th:text="#{book_detail_locations_label}">Backup locations</h4>
 		<table>
 		<tr>
-		    <th>Naam</th>
-			<th>Code 1</th>
-			<th>Code 2</th>
+		    <th th:text="#{book_detail_location_name_label}">Backup location name</th>
+			<th th:text="#{book_detail_location_code1_label}">Backup location code 1</th>
+			<th th:text="#{book_detail_location_code2_label}">Backup location code 2</th>
 		</tr>
 
         <th:block th:each="location,iter: ${locationsList}">
