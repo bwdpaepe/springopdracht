@@ -15,7 +15,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import validator.RangeISBN;
 import validator.ValidISBN;
+import validator.ValidLocationCode;
+import validator.ValidLocationName;
+import validator.ValidPrice;
 
 @Getter
 @Setter
@@ -29,15 +33,16 @@ public class BookForm {
 	@NotBlank(message="{book_image_notblank}")
 	private String image;
 	
-	@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")
+	//@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")  werkt niet, veld mag null zijn
+	//@Nullable
+	@RangeISBN
 	@ValidISBN
-	@Nullable
 	private long isbn;
 	
-	@Positive
-	@DecimalMin(value = "0.01", message="{book_price_min}")
-	@DecimalMax(value = "99.99", message="{book_price_max}")
-	@Nullable
+	//@DecimalMin(value = "0.01", message="{book_price_min}")     werkt niet, veld mag null zijn
+	//@DecimalMax(value = "99.99", message="{book_price_max}")    werkt niet, veld mag null zijn
+	//@Nullable
+	@ValidPrice
 	private double price;
 	
 	@NotNull
@@ -61,27 +66,33 @@ public class BookForm {
 	@Max(value= 300, message="{location_code2_max}")
 	private int locationCode12;
 	
-	@Pattern(regexp="^[a-zA-Z]*", message="{location_name_only_alpha}")
-	@Nullable
+	//@Pattern(regexp="^[a-zA-Z]*", message="{location_name_only_alpha}")
+	//@Nullable
+	@ValidLocationName
 	private String locationName2;
-	@Min(value = 50, message="{location_code1_min}")
-	@Max(value= 300, message="{location_code1_max}")
-	@Nullable
+	//@Min(value = 50, message="{location_code1_min}")
+	//@Max(value= 300, message="{location_code1_max}")
+	//@Nullable
+	@ValidLocationCode
 	private int locationCode21;
-	@Min(value = 50, message="{location_code2_min}")
-	@Max(value= 300, message="{location_code2_max}")
-	@Nullable
+	//@Min(value = 50, message="{location_code2_min}")
+	//@Max(value= 300, message="{location_code2_max}")
+	//@Nullable
+	@ValidLocationCode
 	private int locationCode22;
 	
-	@Pattern(regexp="^[a-zA-Z]*", message="{location_name_only_alpha}")
-	@Nullable
+	//@Pattern(regexp="^[a-zA-Z]*", message="{location_name_only_alpha}")
+	//@Nullable
+	@ValidLocationName
 	private String locationName3;
-	@Min(value = 50, message="{location_code1_min}")
-	@Max(value= 300, message="{location_code1_max}")
-	@Nullable
+	//@Min(value = 50, message="{location_code1_min}")
+	//@Max(value= 300, message="{location_code1_max}")
+	//@Nullable
+	@ValidLocationCode
 	private int locationCode31;
-	@Min(value = 50, message="{location_code2_min}")
-	@Max(value= 300, message="{location_code2_max}")
-	@Nullable
+	//@Min(value = 50, message="{location_code2_min}")
+	//@Max(value= 300, message="{location_code2_max}")
+	//@Nullable
+	@ValidLocationCode
 	private int locationCode32;
 }

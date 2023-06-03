@@ -35,7 +35,7 @@ public class Author implements Serializable {
 	private long id;
 
 	@Column(unique=true)
-	@NotBlank(message="{author_name_notblank}")
+	//@NotBlank(message="{author_name_notblank}")
 	private String name;
 	
 	@ManyToMany (mappedBy="authorList")

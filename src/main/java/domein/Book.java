@@ -60,7 +60,7 @@ public class Book implements Serializable {
 	private String image;
 	
 	@JsonProperty("ISBN")
-	@Column(unique=true)
+	//@Column(unique=true)	ISBN is niet verplicht, dus constraint kan niet
 	//@Range(min=1000000000000L, max=9999999999999L, message="{book_isbn_range}")
 	//@ValidISBN
 	private long isbn;
@@ -87,7 +87,7 @@ public class Book implements Serializable {
 		this.name = name;
 		this.image = image;
 		this.price = new SecureRandom().nextDouble(0.00, 100.00);
-		this.numVotes = new SecureRandom().nextInt(1,100);
+		//this.numVotes = new SecureRandom().nextInt(1,100);
 	}
 	
 	public Book (String name, String image, long isbn) {
@@ -95,7 +95,7 @@ public class Book implements Serializable {
 		this.image = image;
 		this.isbn = isbn;
 		this.price = new SecureRandom().nextDouble(20.00, 40.00);
-		this.numVotes = new SecureRandom().nextInt(1,100);
+		//this.numVotes = new SecureRandom().nextInt(1,100);
 	}
 	
 	public Book (String name, String image, long isbn, double price) {
@@ -103,7 +103,7 @@ public class Book implements Serializable {
 		this.image = image;
 		this.isbn = isbn;
 		this.price = price;
-		this.numVotes = 0;
+		//this.numVotes = 0;
 	}
 	
 	public void addAuthor(Author author) {

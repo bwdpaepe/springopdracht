@@ -22,7 +22,7 @@ public class BookFormLocation1Validation implements Validator {
 		
 		if(Math.abs(Math.abs(bookForm.getLocationCode11()) - Math.abs(bookForm.getLocationCode12())) < 50) {
 			errors.rejectValue("locationCode12", 
-					"location_code1code2",
+					"location_code1_code2",
 					"");
 		}
 		

@@ -87,7 +87,10 @@ public class WelcomeController {
 			return "book_form";
 		}
 		
-		//System.out.println(bookForm.getAuthor1());
+		System.out.println(bookForm.getName());
+		System.out.println(bookForm.getImage());
+		System.out.println(bookForm.getIsbn());
+		System.out.println(bookForm.getPrice());
 		
 		
 				
@@ -97,23 +100,29 @@ public class WelcomeController {
 				bookForm.getIsbn(),
 				bookForm.getPrice()
 				);
+		System.out.println(bookForm.getAuthor1());
 		book.addAuthor(bookForm.getAuthor1());
 		if(bookForm.getAuthor2()!= null) {
+			System.out.println(bookForm.getAuthor2());
 			book.addAuthor(bookForm.getAuthor2());
 		}
 		if(bookForm.getAuthor3()!= null) {
+			System.out.println(bookForm.getAuthor3());
 			book.addAuthor(bookForm.getAuthor3());
 		}
+		System.out.println(bookForm.getLocationName1());
 		Location location = new Location(bookForm.getLocationName1(),bookForm.getLocationCode11(),bookForm.getLocationCode12());
 		locationService.save(location);
 		book.addLocation(locationService.findByName(bookForm.getLocationName1()));
-		if(bookForm.getLocationName2()!= null) {
+		if(bookForm.getLocationName2()!= null && !bookForm.getLocationName2().isBlank()) {
+			System.out.println(bookForm.getLocationName2());
 			location = new Location(bookForm.getLocationName2(),bookForm.getLocationCode21(),bookForm.getLocationCode22());
 			locationService.save(location);
 			
 			book.addLocation(locationService.findByName(bookForm.getLocationName2()));
 		}
-		if(bookForm.getLocationName3()!= null) {
+		if(bookForm.getLocationName3()!= null && !bookForm.getLocationName3().isBlank()) {
+			System.out.println(bookForm.getLocationName3());
 			location = new Location(bookForm.getLocationName3(),bookForm.getLocationCode31(),bookForm.getLocationCode32());
 			locationService.save(location);
 

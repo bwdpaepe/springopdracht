@@ -17,6 +17,11 @@ public class ISBNConstraintValidator implements ConstraintValidator<ValidISBN, L
 	}
 	
 	public boolean isISBN(Long value) {
+		
+		if( (value == null) || (value == 0L)) {
+			return true;	//blank isbn is allowed
+		}
+		
 		if( String.valueOf(value).length() != 13) {
 			return false;
 		}

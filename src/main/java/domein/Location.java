@@ -26,14 +26,14 @@ public class Location implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@NotBlank(message="{location_name_notblank}")
-	@Pattern(regexp="^[a-zA-Z]*", message="{location_name_only_alpha}")
+	//@NotBlank(message="{location_name_notblank}")
+	//@Pattern(regexp="^[a-zA-Z]*", message="{location_name_only_alpha}")
 	private String name;
-	@Min(value = 50, message="{location_code1_min}")
-	@Max(value= 300, message="{location_code1_max}")
+	//@Min(value = 50, message="{location_code1_min}")
+	//@Max(value= 300, message="{location_code1_max}")
 	private int code1;
-	@Min(value = 50, message="{location_code2_min}")
-	@Max(value= 300, message="{location_code2_max}")
+	//@Min(value = 50, message="{location_code2_min}")
+	//@Max(value= 300, message="{location_code2_max}")
 	private int code2;
 	
 	public Location(String name, int code1, int code2) {
