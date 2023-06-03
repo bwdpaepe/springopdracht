@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -96,9 +97,14 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book createDummyBook() {
-		Book aBook = new Book("Romeo and Juliet", "https://www.gutenberg.org/cache/epub/1513/pg1513.cover.medium.jpg", 9787698540261L);
-		aBook.addAuthor(authorService.findByName("Shakespeare, William"));
+	public BookRest createDummyBook() {
+		List<String> authors = new ArrayList<>();
+		List<String> locations = new ArrayList<>();
+		List<String> users = new ArrayList<>();
+		authors.add("Shakespeare, William");
+		locations.add("locationA");
+		users.add("sandra@example.com");
+		BookRest aBook = new BookRest(1,"Romeo and Juliet", "https://www.gutenberg.org/cache/epub/1513/pg1513.cover.medium.jpg", 9787698540261L, 21.215347427581065, authors, locations, users);
 		return aBook;
 	}
 

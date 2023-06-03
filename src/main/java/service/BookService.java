@@ -29,5 +29,5 @@ public interface BookService {
 	
 	public BookRest findByISBN(long isbn);
 	
-	public Book createDummyBook();
+	public BookRest createDummyBook();
 }
