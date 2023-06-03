@@ -62,6 +62,9 @@ public class WelcomeController {
 
         model.addAttribute("userName", authentication.getName());
         model.addAttribute("userListRoles", listRoles);
+        System.out.println(listRoles.toString());
+        System.out.println(listRoles.toString().indexOf("ROLE_ADMIN"));
+        model.addAttribute("isAdmin", listRoles.toString().indexOf("ROLE_ADMIN") != -1);
         
         // list of books
         model.addAttribute("bookList", bookService.allBookRows());

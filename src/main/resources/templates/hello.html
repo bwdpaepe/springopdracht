@@ -8,7 +8,12 @@
 <body>
 	<div th:replace="header.html :: header(userName=${userName}, userListRoles=${userListRoles})"></div>
 	<main>
-		<div class="catalogus-head"><h1 th:text="#{catalogus}" class="catalogus-title">Backup h1</h1><!-- <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a href="#" th:text="#{voeg_toe}" class="catalogus-links"></a></th:block>--><a href="/book/popular" th:text="#{meest_populair}" class="catalogus-links"></a></div>
+		<div class="catalogus-head">
+		<h1 th:text="#{catalogus}" class="catalogus-title">Backup h1</h1>
+		<a th:if="${isAdmin}" href="/add" th:text="#{voeg_toe}" class="catalogus-links">Backup voeg toe</a>
+		<!-- <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" href="/add" th:text="#{voeg_toe}" class="catalogus-links">Backup voeg toe</a> Attempted to call method expression(java.lang.String) on null context object-->
+		<a href="/popular" th:text="#{meest_populair}" class="catalogus-links">Backup populair</a>
+		</div>
 		<div th:if="${message}" th:class="${message.type}" th:text="${message.message}"></div>
 		<div class="catalogus-wrapper">
 		<th:block th:each="book,iter: ${bookList}">

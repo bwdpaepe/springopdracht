@@ -19,7 +19,7 @@ public class BookPopularController {
 	@Autowired
 	private BookService bookService;
 	
-	@GetMapping(value = "/book/popular")
+	@GetMapping(value = "/popular")
     public String bookPopular(Model model, Authentication authentication) {
 		// header
 		

@@ -30,7 +30,7 @@ import utility.Message;
 import validator.LocationValidation;
 
 @Controller
-@RequestMapping("/book")
+//@RequestMapping("/book")
 //@SessionAttributes("authentication")
 public class BookDetailController {
 	
@@ -43,7 +43,7 @@ public class BookDetailController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/book/{id}")
 	public String bookDetail(@PathVariable("id") Long bookId, Model model, Authentication authentication) {
 		
 		// header

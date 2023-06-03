@@ -41,7 +41,7 @@ public class SecurityConfig{
             	        		.requestMatchers("/css/**").permitAll()
             	        		.requestMatchers("/img/**").permitAll()
             	        		.requestMatchers("/rest/**").permitAll()
-            	        		.requestMatchers("/*")
+            	        		.requestMatchers("/**")
             	        		.access(new WebExpressionAuthorizationManager("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")))
                 .formLogin(form -> 
                 		form.defaultSuccessUrl("/welcome", true)
