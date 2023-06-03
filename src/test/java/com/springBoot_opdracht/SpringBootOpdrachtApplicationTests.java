@@ -38,8 +38,8 @@ class SpringBootOpdrachtApplicationTests {
 		mockMvc.perform(get("/welcome"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("hello"))
-		.andExpect(model().attributeExists("username"))
-		.andExpect(model().attribute("username", "tania@example.com"));
+		.andExpect(model().attributeExists("userName"))
+		.andExpect(model().attribute("userName", "tania@example.com"));
 	}
 
 	@WithMockUser(username = "tania@example.com", roles = { "NONE" })
