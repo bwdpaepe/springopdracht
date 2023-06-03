@@ -33,6 +33,7 @@ public class SecurityConfig{
             .passwordEncoder(new BCryptPasswordEncoder());
     }
     
+	//.access(new WebExpressionAuthorizationManager("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"))
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().and()
@@ -41,8 +42,13 @@ public class SecurityConfig{
             	        		.requestMatchers("/css/**").permitAll()
             	        		.requestMatchers("/img/**").permitAll()
             	        		.requestMatchers("/rest/**").permitAll()
-            	        		.requestMatchers("/**")
-            	        		.access(new WebExpressionAuthorizationManager("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")))
+            	        		.requestMatchers("/").hasAnyRole("USER", "ADMIN")
+            	        		.requestMatchers("/welcome").hasAnyRole("USER", "ADMIN")
+            	        		.requestMatchers("/popular").hasAnyRole("USER", "ADMIN")
+            	        		.requestMatchers("/book/*").hasAnyRole("USER", "ADMIN")
+            	        		.requestMatchers("/vote/*").hasAnyRole("USER", "ADMIN")
+            	        		.requestMatchers("/add").hasRole("ADMIN")
+            	        		)
                 .formLogin(form -> 
                 		form.defaultSuccessUrl("/welcome", true)
                          	.loginPage("/login")
