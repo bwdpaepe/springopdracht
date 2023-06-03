@@ -46,7 +46,7 @@ public class SecurityConfig{
             	        		.requestMatchers("/welcome").hasAnyRole("USER", "ADMIN")
             	        		.requestMatchers("/popular").hasAnyRole("USER", "ADMIN")
             	        		.requestMatchers("/book/*").hasAnyRole("USER", "ADMIN")
-            	        		.requestMatchers("/vote/*").hasAnyRole("USER", "ADMIN")
+            	        		.requestMatchers("/voted/*").hasAnyRole("USER", "ADMIN")
             	        		.requestMatchers("/add").hasRole("ADMIN")
             	        		)
                 .formLogin(form -> 
