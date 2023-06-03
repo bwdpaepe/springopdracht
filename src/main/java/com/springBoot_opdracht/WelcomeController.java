@@ -137,7 +137,8 @@ public class WelcomeController {
 				new Message("success",
 						messageSource.getMessage("book_save_success",
 								new Object[]{}, locale)));
-		return "redirect:/welcome";
+		//return "redirect:/welcome";
+		return "hello";
 	}
 	
 
